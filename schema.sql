@@ -8,6 +8,8 @@ CREATE TABLE IF NOT EXISTS User (
     id INT NOT NULL AUTO_INCREMENT,
     website_email VARCHAR(255) NOT NULL UNIQUE,
     website_password VARCHAR(255) NOT NULL,
+
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS Contact (
