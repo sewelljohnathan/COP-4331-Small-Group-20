@@ -22,6 +22,6 @@ CREATE TABLE IF NOT EXISTS Contact (
     time_created DATE DEFAULT(CURRENT_DATE),
     is_favorited BOOLEAN,
 
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
     FOREIGN KEY (creator_id) REFERENCES User(id) ON DELETE CASCADE
 );
