@@ -6,10 +6,8 @@ USE cop4331small;
 -- Create entities
 CREATE TABLE IF NOT EXISTS User (
     id INT NOT NULL AUTO_INCREMENT,
-    website_email VARCHAR(255),
-    website_password VARCHAR(255),
-
-    PRIMARY KEY (id)
+    website_email VARCHAR(255) NOT NULL UNIQUE,
+    website_password VARCHAR(255) NOT NULL,
 );
 
 CREATE TABLE IF NOT EXISTS Contact (
