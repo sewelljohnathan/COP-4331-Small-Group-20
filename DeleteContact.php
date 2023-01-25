@@ -1,7 +1,7 @@
 <?php
 	$inData = getRequestInfo();
 	
-	$id = $inData["id"];
+	$id = $inData["ID"];
 
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 	if ($conn->connect_error) 
