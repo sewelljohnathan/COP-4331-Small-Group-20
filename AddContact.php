@@ -1,7 +1,7 @@
 <?php
-	$inData = getRequestInfo();
+    $inData = getRequestInfo();
 	
-	$userId = $inData["userId"];
+    $userId = $inData["userId"];
     $firstName = $inData["firstName"];
     $lastName = $inData["lastName"];
     $email = $inData["email"];
