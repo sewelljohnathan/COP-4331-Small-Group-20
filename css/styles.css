@@ -1,0 +1,30 @@
+body {
+    font-family: 'League Spartan', sans-serif; 
+    background-color: #F2F2F2;
+    color: #555555;
+}
+
+.card {
+    border-radius: 1rem; 
+    border-color: black;
+}
+
+input[type="text"] {
+    border-color: black;
+}
+
+input[type="password"] {
+    border-color: black;
+}
+
+input[type="email"] {
+    border-color: black;
+}
+
+input[type="tel"] {
+    border-color: black;
+}
+
+.contact-card:hover {
+    border-color: #0d6efd;
+}
