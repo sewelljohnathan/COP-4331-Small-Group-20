@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact App</title>
+    <link rel="icon" type="image/x-icon" href="/pegasus_favicon.ico">
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/css/styles.css">
+    <!-- <script defer type="text/javascript" src="js/code.js"></script> -->
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
+    <script defer type="text/javascript">
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+                readCookie();
+            },
+            false
+        );
+    </script>
+</head>
+
+<body class="vh-100">
+
+    <h1 id="title" class="text-center py-2">Contacts App</h1>
+
+    <div class="container">
+
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addContactBackdrop">Add
+            Contact</button>
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="contacts-tab" data-bs-toggle="tab"
+                    data-bs-target="#contacts-tab-pane" type="button" role="tab">All Contacts</button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="contacts-tab-pane" role="tabpanel" tabindex="0">
+                <span id="contactSearchResult"></span>
+                <div class="input-group my-3">
+                    <input type="text" class="form-control" id="searchText" placeholder="Search Contact">
+                    <button type="button" id="searchContactButton" class="btn btn-primary" disabled>Search
+                        Contact</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-4 g-4" id="accessUIDiv">
+            <div class="col">
+                <div class="card text-bg-light mb-3 contact-card" data-bs-toggle="modal"
+                    data-bs-target="#updateContactBackdrop">
+                    <div class="card-header">John Doe</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Email: </h5>
+                        <h5 class="card-title">Phone Number: </h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="addContactBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Contact</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" class="form-control my-3" id="contactText" placeholder="First Name" />
+                        <input type="text" class="form-control my-3" id="contactText" placeholder="Last Name" />
+                        <input type="tel" pattern="(?:(\+1)[ -])\(?(?<areacode>\d{3})\)?[ -]?(\d{3})[ -]?(\d{4})"
+                            class="form-control my-3" id="contactText" placeholder="Phone Number" />
+                        <input type="email" class="form-control my-3" id="contactText" placeholder="Email" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="add-contact">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="updateContactBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Contact</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger">Delete Contact</button>
+                        <button type="button" class="btn btn-primary">Update Contact</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <span id="userName" class="position-absolute bottom-0 start-0 mx-3 my-3"></span>
+        <div id="loggedInDiv" class="position-absolute bottom-0 end-0">
+            <button type="button" id="logoutButton" class="btn btn-secondary mx-3 my-3" onclick="doLogout();">
+                Log Out
+            </button>
+        </div>
+
+</body>
+
+</html>
