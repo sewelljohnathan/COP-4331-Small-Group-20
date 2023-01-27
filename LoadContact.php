@@ -1,7 +1,7 @@
 <?php
     $inData = getRequestInfo();
-
-    $id = $inData["ID"];
+	
+    $userId = $inData["userId"];
     $firstName = $inData["firstName"];
     $lastName = $inData["lastName"];
     $email = $inData["email"];
@@ -38,5 +38,6 @@
 		$retValue = '{"error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
+	
 	
 ?>
