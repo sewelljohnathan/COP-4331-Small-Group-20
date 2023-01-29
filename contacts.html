@@ -12,7 +12,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
     <link rel="stylesheet" href="/css/styles.css">
-    <!-- <script defer type="text/javascript" src="js/code.js"></script> -->
+    <script defer type="text/javascript" src="js/code.js"></script>
+    <script defer src="/js/script.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
@@ -30,11 +31,11 @@
 
 <body class="vh-100">
 
-    <h1 id="title" class="text-center py-2">Contacts App</h1>
+    <h1 id="title" class="text-center py-2">All Contacts</h1>
 
     <div class="container">
 
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addContactBackdrop">Add
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addContactBackdrop">Add
             Contact</button>
 
         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -56,19 +57,7 @@
 
         </div>
 
-        <div class="row row-cols-1 row-cols-md-4 g-4" id="accessUIDiv">
-            <div class="col">
-                <div class="card text-bg-light mb-3 contact-card" data-bs-toggle="modal"
-                    data-bs-target="#updateContactBackdrop">
-                    <div class="card-header">John Doe</div>
-                    <div class="card-body">
-                        <h5 class="card-title">Email: </h5>
-                        <h5 class="card-title">Phone Number: </h5>
-                        <p class="card-text"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="row row-cols-1 row-cols-md-4 g-4" id="accessUIDiv"></div>
 
         <div class="modal fade" id="addContactBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -79,15 +68,15 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" class="form-control my-3" id="contactText" placeholder="First Name" />
-                        <input type="text" class="form-control my-3" id="contactText" placeholder="Last Name" />
+                        <input type="text" class="form-control my-3" id="first-name" placeholder="First Name" />
+                        <input type="text" class="form-control my-3" id="last-name" placeholder="Last Name" />
                         <input type="tel" pattern="(?:(\+1)[ -])\(?(?<areacode>\d{3})\)?[ -]?(\d{3})[ -]?(\d{4})"
-                            class="form-control my-3" id="contactText" placeholder="Phone Number" />
-                        <input type="email" class="form-control my-3" id="contactText" placeholder="Email" />
+                            class="form-control my-3" id="phone-number" placeholder="Phone Number" />
+                        <input type="email" class="form-control my-3" id="email" placeholder="Email" />
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="add-contact">Submit</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="add-contact">Submit</button>
                     </div>
                 </div>
             </div>
@@ -101,10 +90,16 @@
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Contact</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body"></div>
+                    <div class="modal-body">
+                        <input type="text" class="form-control my-3" id="update-first-name" placeholder="First Name" />
+                        <input type="text" class="form-control my-3" id="update-last-name" placeholder="Last Name" />
+                        <input type="tel" pattern="(?:(\+1)[ -])\(?(?<areacode>\d{3})\)?[ -]?(\d{3})[ -]?(\d{4})"
+                            class="form-control my-3" id="update-phone-number" placeholder="Phone Number" />
+                        <input type="email" class="form-control my-3" id="update-email" placeholder="Email" />
+                    </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger">Delete Contact</button>
-                        <button type="button" class="btn btn-primary">Update Contact</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="del-contact">Delete Contact</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="update-contact">Update Contact</button>
                     </div>
                 </div>
             </div>
