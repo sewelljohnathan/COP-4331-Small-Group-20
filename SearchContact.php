@@ -12,9 +12,9 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("select firstName from Contacts where firstName like ? and UserID=?");
-		$contactName = "%" . $inData["search"] . "%";
-		$stmt->bind_param("ss", $contactName, $inData["userId"]);
+		$stmt = $conn->prepare("SELECT ID, firstName, lastName, email, phone FROM Contacts WHERE UserId=? AND firstName LIKE ? OR lastName LIKE ? OR email LIKE ? OR phone LIKE ? ORDER BY firstName, lastName ASC");
+		$searchContact = "%" . $inData["search"] . "%";
+		$stmt->bind_param("issss", $inData["userId"], $searchContact, $searchContact, $searchContact, $searchContact);
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
@@ -25,8 +25,10 @@
 			{
 				$searchResults .= ",";
 			}
+
 			$searchCount++;
-			$searchResults .= '"' . $row["firstName"] . '"';
+			$searchResults .= '{"ID":"' . $row['ID'] . '"}';
+
 		}
 		
 		if( $searchCount == 0 )
@@ -49,7 +51,7 @@
 
 	function sendResultInfoAsJson( $obj )
 	{
-		header('Content-type: application/json');
+		header('Content-Type: application/json');
 		echo $obj;
 	}
 	
@@ -64,5 +66,5 @@
 		$retValue = '{"results":[' . $searchResults . '],"error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
-	
+
 ?>
