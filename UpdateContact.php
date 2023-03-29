@@ -1,5 +1,5 @@
 <?php
-    $inData = getRequestInfo();
+	$inData = getRequestInfo();
 
     $id = $inData["ID"];
     $firstName = $inData["firstName"];
