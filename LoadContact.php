@@ -1,11 +1,9 @@
 <?php
-    $inData = getRequestInfo();
+
+	$inData = getRequestInfo();
 	
-    $userId = $inData["userId"];
-    $firstName = $inData["firstName"];
-    $lastName = $inData["lastName"];
-    $email = $inData["email"];
-    $phone = $inData["phone"];
+	$searchResults = "";
+	$searchCount = 0;
 
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 	if ($conn->connect_error) 
@@ -14,12 +12,39 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("select FirstName, LastName, Email, PhoneNumber FROM Contacts WHERE UserID = ?");
-		$stmt->bind_param("i", $userId);
+		$stmt = $conn->prepare("SELECT ID, firstName, lastName, email, phone from Contacts WHERE UserId=? ORDER BY firstName, lastName ASC");
+		$stmt->bind_param("i", $inData["userId"]);
 		$stmt->execute();
+		
+		$result = $stmt->get_result();
+		
+		while($row = $result->fetch_assoc())
+		{
+			if( $searchCount > 0 )
+			{
+				$searchResults .= ",";
+			}
+
+			$searchCount++;
+			$searchResults .= '{"ID":' . $row['ID'] . ',';
+			$searchResults .= '"firstName":"' . $row['firstName'] . '",';
+			$searchResults .= '"lastName":"' . $row['lastName'] . '",';
+			$searchResults .= '"email":"' . $row['email'] . '",';
+			$searchResults .= '"phone":"' . $row['phone'] . '"}';
+
+		}
+		
+		if( $searchCount == 0 )
+		{
+			returnWithError( "No Records Found" );
+		}
+		else
+		{
+			returnWithInfo( $searchResults );
+		}
+		
 		$stmt->close();
 		$conn->close();
-		returnWithError("");
 	}
 
 	function getRequestInfo()
@@ -29,15 +54,20 @@
 
 	function sendResultInfoAsJson( $obj )
 	{
-		header('Content-type: application/json');
+		header('Content-Type: application/json');
 		echo $obj;
 	}
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"error":"' . $err . '"}';
+		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
-	
+	function returnWithInfo( $searchResults )
+	{
+		$retValue = '{"results":[' . $searchResults . '],"error":""}';
+		sendResultInfoAsJson( $retValue );
+	}
+
 ?>
